@@ -1,0 +1,31 @@
+{
+  "@name": "pixiv内容屏蔽器",
+  "alias": "mkPixivContentShield",
+  "@namespace": "http://tampermonkey.net/",
+  "@license": "GPL-3.0",
+  "@version": "1.0",
+  "@author": "byhgz",
+  "@description": "",
+  "@icon": "https://static.hdslb.com/images/favicon.ico",
+  "noFrames": true,
+  "@run-at": "document-start",
+  "@grant": [
+    "GM_setValue",
+    "GM_getValue",
+    "GM_deleteValue",
+    "GM_addStyle",
+    "GM_registerMenuCommand"
+  ],
+  "@exclude": [
+    "http://localhost:3001/"
+  ],
+  "@match": [
+    "*://localhost/*",
+    "*://www.pixiv.net/*"
+  ],
+  "@require": [
+    "https://unpkg.com/vue@2.7.16/dist/vue.min.js",
+    "https://unpkg.com/element-ui@2.15.14/lib/index.js"
+  ]
+}
+

@@ -1,0 +1,72 @@
+<script lang="ts">
+import {eventEmitter} from "../model/EventEmitter";
+import ruleKVDataList from '../res/ruleKVDataList.json'
+
+interface ruleInfo extends ruleKeyDataListItemType {
+  len: number
+}
+
+const ruleCountList: ruleInfo[] = []
+for (const item of ruleKVDataList) {
+  const key = item.key;
+  ruleCountList.push({...item, len: GM_getValue(key, []).length})
+}
+/**
+ * 规则信息组件
+ */
+export default {
+  data() {
+    return {
+      ruleCountList
+    }
+  },
+  methods: {
+    refreshInfo(isTip = true) {
+      for (let x of this.ruleCountList) {
+        x.len = GM_getValue(x.key, []).length;
+      }
+      if (!isTip) return;
+      this.$notify({title: 'tip', message: '刷新规则信息成功', type: 'success'})
+    },
+    refreshInfoBut() {
+      this.refreshInfo()
+    },
+    lookRuleBut(item: ruleInfo) {
+      if (item.len === 0) {
+        this.$message.warning('当前规则信息为空')
+        return;
+      }
+      eventEmitter.emit('event-lookRuleDialog', item)
+    }
+  },
+  created() {
+    this.refreshInfo(false);
+    eventEmitter.on('刷新规则信息', (isTip = true) => {
+      this.refreshInfo(isTip);
+    })
+  }
+};
+</script>
+
+<template>
+  <div>
+    <el-card shadow="never">
+      <template #header>
+        <div class="el-horizontal-outside">
+          <div>基础规则信息</div>
+          <div>
+            <el-button @click="refreshInfoBut">刷新信息</el-button>
+          </div>
+        </div>
+      </template>
+      <div style="display: flex;flex-wrap: wrap;row-gap: 2px;justify-content: flex-start;">
+        <el-button v-for="item in ruleCountList" :key="item.fullName" size="small" @click="lookRuleBut(item)">
+          {{ item.fullName }}
+          <el-tag :effect="item.len>0?'dark':'light'" size="mini">
+            {{ item.len }}
+          </el-tag>
+        </el-button>
+      </div>
+    </el-card>
+  </div>
+</template>

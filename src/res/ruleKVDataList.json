@@ -1,0 +1,26 @@
+[
+  {
+    "name": "用户名",
+    "key": "username",
+    "pattern": "模糊",
+    "fullName": "模糊用户名"
+  },
+  {
+    "name": "用户名",
+    "key": "username_precise",
+    "pattern": "精确",
+    "fullName": "精确用户名"
+  },
+  {
+    "name": "用户名",
+    "key": "username_regex",
+    "pattern": "正则",
+    "fullName": "正则用户名"
+  },
+  {
+    "name": "用户id",
+    "key": "userId_precise",
+    "pattern": "精确",
+    "fullName": "精确用户id"
+  }
+]
