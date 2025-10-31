@@ -5,7 +5,7 @@
   "@license": "GPL-3.0",
   "@version": "1.0",
   "@author": "byhgz",
-  "@description": "",
+  "@description": "对pixiv大部分页面内容进行屏蔽处理，主要作用域相关插画、小说、漫画列表，排行榜中的插画、小说、漫画列表 评论处鼠标移入可显示屏蔽按钮，点击可根据需求添加类型屏蔽。",
   "@icon": "https://static.hdslb.com/images/favicon.ico",
   "noFrames": true,
   "@run-at": "document-start",
