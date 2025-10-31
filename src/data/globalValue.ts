@@ -10,6 +10,7 @@ export default {
     //作者B站链接
     b_url: 'https://space.bilibili.com/473239155',
     scriptCat_js_url: 'https://scriptcat.org/zh-CN/script-show-page/4523',
+    greasyfork_js_url: 'https://greasyfork.org/zh-CN/scripts/554327',
     //脚本开源地址
     github_url: 'https://github.com/hgztask/mkPixivContentShield',
     update_log_url: 'https://docs.qq.com/doc/DSnhjSVZmRkpCd0Nj'
