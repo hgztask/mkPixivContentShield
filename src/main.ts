@@ -5,7 +5,6 @@ import watch from './watch/watch'
 import './model/maskOptionsDialogBox'
 import defaultStyle from './css/def.css';
 import gzStyle from './css/gz-style.css'
-import './data/globalValue'
 import elUtil from "./utils/elUtil";
 
 window.addEventListener('load', () => {

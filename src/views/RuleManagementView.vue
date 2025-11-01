@@ -2,7 +2,6 @@
 import ruleKeyDataList from '../res/ruleKVDataList.json'
 import AddRuleDialog from "../components/AddRuleDialog.vue";
 import {eventEmitter} from "../model/EventEmitter";
-import ruleKeyListData from "../data/ruleKeyListData";
 import RuleSetValueDialog from "../eventEmitter_components/ruleSetValueDialog.vue";
 import ViewRulesRuleDialog from "../eventEmitter_components/viewRulesRuleDialog.vue";
 import RuleInformationView from "./RuleInformationView.vue";
@@ -14,8 +13,7 @@ export default {
   data() {
     return {
       ruleInfoArr,
-      cascaderVal: ['精确匹配', 'userId_precise'],
-      cascaderOptions: ruleKeyListData.getSelectOptions(),
+      cascaderVal: 'userId_precise',
       addRuleDialogVisible: false,
       addRuleDialogRuleInfo: {key: '', name: '', fullName: ''} as ruleKeyDataListItemType
     }
@@ -25,27 +23,27 @@ export default {
       console.log(val)
     },
     batchAddBut() {
-      const [_, key] = this.cascaderVal;
+      const key = this.cascaderVal;
       this.addRuleDialogVisible = true;
       this.addRuleDialogRuleInfo = ruleInfoArr.find(item => item.key === key)!
     },
     setRuleBut() {
-      const [_, key] = this.cascaderVal;
+      const key = this.cascaderVal;
       const typeMap = ruleInfoArr.find(item => item.key === key);
       eventEmitter.emit('event:修改规则对话框', typeMap)
     },
     findItemAllBut() {
-      const [_, key] = this.cascaderVal;
+      const key = this.cascaderVal;
       const typeMap = ruleInfoArr.find(item => item.key === key);
       eventEmitter.send('event-lookRuleDialog', typeMap);
     },
     delBut() {
-      const [_, key] = this.cascaderVal;
+      const key = this.cascaderVal;
       ruleUtil.showDelRuleInput(key);
       eventEmitter.emit('刷新规则信息', false);
     },
     clearItemRuleBut() {
-      const key = this.cascaderVal[1];
+      const key = this.cascaderVal;
       const find = ruleInfoArr.find(item => item.key === key)!;
       this.$confirm(`是要清空${find.fullName}的规则内容吗？`, 'tip').then(() => {
         GM_deleteValue(key)
@@ -62,19 +60,15 @@ export default {
         eventEmitter.emit('刷新规则信息', false);
       })
     }
-  },
-  watch: {},
-  created() {
-
   }
 }
 </script>
 
 <template>
   <div>
-    <el-cascader v-model="cascaderVal" :options="cascaderOptions" :props="{ expandTrigger: 'hover' }"
-                 :show-all-levels="true" filterable
-                 style="width: 100%" @change="handleChangeCascader"/>
+    <el-select v-model="cascaderVal" placeholder="请选择规则类型" @change="handleChangeCascader">
+      <el-option v-for="item in ruleInfoArr" :key="item.key" :label="item.fullName" :value="item.key"/>
+    </el-select>
     <el-divider/>
     <el-button-group>
       <el-button @click="batchAddBut">批量添加</el-button>

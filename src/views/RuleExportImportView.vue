@@ -2,7 +2,7 @@
 //规则导入导出组件
 import ruleUtil from "../utils/ruleUtil";
 import {eventEmitter} from "../model/EventEmitter";
-import defUtil, {saveTextAsFile} from "../utils/defUtil";
+import defUtil from "../utils/defUtil";
 import ruleKeyDataList from '../res/ruleKVDataList.json'
 
 export default {
@@ -87,7 +87,7 @@ export default {
           this.$alert('文件名不能为空或包含空格')
           return
         }
-        saveTextAsFile(JSON.stringify(map, null, 4), value + '.json');
+        defUtil.saveTextAsFile(JSON.stringify(map, null, 4), value + '.json');
       })
     },
     basisRuleOutToFIleBut() {
@@ -100,7 +100,7 @@ export default {
           this.$alert('文件名不能为空或包含空格')
           return
         }
-        saveTextAsFile(ruleUtil.getRuleContent(true, 4) as string, value + ".json");
+        defUtil.saveTextAsFile(ruleUtil.getRuleContent(true, 4) as string, value + ".json");
       })
 
     },
