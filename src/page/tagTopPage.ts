@@ -17,6 +17,9 @@ const checkTagUserList = async () => {
     shielding.shieldingItemDecorated(list);
 }
 
+//符合的item名称
+const complyWithItemName = ['illustrations', 'manga', 'novels', 'artworks']
+
 //tag顶部页，类似于搜索页
 export default {
     isThisPage(url: string) {
@@ -30,7 +33,7 @@ export default {
             return true;
         }
         const tabName = pathSegments[2];
-        return tabName === 'illustrations' || tabName === 'manga' || tabName === 'novels';
+        return complyWithItemName.includes(tabName);
     },
     //tag搜索页中的用户页
     isSearchUserPage(url: string) {
