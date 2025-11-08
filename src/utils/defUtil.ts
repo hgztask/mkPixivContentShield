@@ -46,7 +46,7 @@ export default {
      * @param text {string} 文本内容
      * @param filename {string} 文件名
      */
-    saveTextAsFile(text: string, filename = 'data.txt') {
+    saveTextAsFile(text: string, filename:string = 'data.txt') {
         // 创建Blob对象（处理大文本）
         const blob = new Blob([text], {type: 'text/plain'});
         // 创建下载链接

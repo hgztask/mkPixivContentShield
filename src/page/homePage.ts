@@ -46,8 +46,9 @@ export default {
     },
     //检查首页子页面插画推荐列表
     async checkHomeRecommendIllustrationList() {
-        const list = await pageCommon.getAListOfWorks('.eqqsVu.fuIUpJ')
+        const list = await pageCommon.getAListOfWorks('.eqqsVu')
         shielding.shieldingItemDecorated(list);
+        console.log('检查完首页子页面推荐作品列表')
     },
     //间隔检查精选新作列表
     intervalHomeWorksListExecutor: new IntervalExecutor(() => {
@@ -66,8 +67,9 @@ export default {
         shielding.shieldingItemDecorated(list)
     }, {processTips: true, intervalName: '精选新作列表'}),
     //检查首页下wards推荐作品列表
-    async checkHomeBelowRecommendWorksList() {
-        const list = await getHomeBelowRecommendWorksList()
-        shielding.shieldingItemDecorated(list);
+    checkHomeBelowRecommendWorksList() {
+        getHomeBelowRecommendWorksList().then(list => {
+            shielding.shieldingItemDecorated(list);
+        })
     }
 }
