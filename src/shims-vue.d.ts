@@ -15,7 +15,8 @@ interface Window {
     getListData,
     getAListOfWorks,
     parseUrl,
-    getWorksList
+    getWorksList,
+    testElUtil,
 }
 
 interface SelectedNewWorkType {

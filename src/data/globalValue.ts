@@ -1,4 +1,8 @@
+import elUtil from "../utils/elUtil";
+
 unsafeWindow.mk_win = window;
+
+window.testElUtil = elUtil
 
 export const returnTempVal: DefReturnTempValType = {state: false};
 

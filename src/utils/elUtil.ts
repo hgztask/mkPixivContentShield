@@ -1,3 +1,5 @@
+import {valueCache} from "../data/valueCache";
+
 /**
  * 判断一个变量是否是DOM元素
  * @param {*} obj - 要判断的变量
@@ -174,5 +176,46 @@ const createVueDiv = (el: Element | null = null, cssTests: string | null = null)
  * @version 0.2.0
  */
 export default {
-    findElement, isDOMElement, findElements, updateCssVModal, createVueDiv
+    findElement, isDOMElement, findElements, updateCssVModal, createVueDiv,
+    /**
+     * 获取指定标签下的指定标签，最终返回Section元素
+     * @param css 卡片标签名css
+     * @param label 卡片标签名
+     * @param timeout
+     */
+    async getSectionLabel(css: string, label: string, timeout: number = 1000): Promise<Element> {
+        const el = valueCache.get(label) as Element | null;
+        if (el !== null && el.isConnected) {
+            return el;
+        }
+        return new Promise((resolve) => {
+            const interval = setInterval(() => {
+                const els = document.getElementsByTagName('section');
+                if (els.length === 0) return
+                for (const el of els) {
+                    const targetLabelEl = el.querySelector(css);
+                    if (targetLabelEl === null) continue
+                    if (targetLabelEl.textContent === label) {
+                        resolve(el)
+                        valueCache.set(label, el)
+                        clearInterval(interval)
+                        break
+                    }
+                }
+            }, timeout);
+        })
+    },
+    xpathEl(expression: string, contextNode = document.body) {
+        const xPathResult = document.evaluate(expression, contextNode, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+        return xPathResult.singleNodeValue
+    },
+    xpathEls(expression: string, contextNode = document.body) {
+        const xPathResult = document.evaluate(expression, contextNode, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+        const els = [];
+        for (let i = 0; i < xPathResult.snapshotLength; i++) {
+            const node = xPathResult.snapshotItem(i);
+            els.push(node)
+        }
+        return els;
+    },
 }
