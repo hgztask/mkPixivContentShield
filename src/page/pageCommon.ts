@@ -67,8 +67,10 @@ window.getListData = getListData;
 
 //获取约稿作品列表-插画、漫画、小说
 const getListOfRequestedWorks = async (): Promise<SelectedNewWorkType[]> => {
-    //这里的选择器，前一段是原先的选择器，后一段是用于新的情况匹配的选择器
-    const els = await elUtil.findElements('.sc-1453b7f5-2.dvNJyE,.sc-9ce51bf9-2.hDpden')
+    /**
+     * 这里的选择器，前一段是原先的选择器，后一段是用于新的情况匹配的选择器
+     */
+    const els = await elUtil.findElements('.sc-1453b7f5-2.dvNJyE,.sc-9ce51bf9-2.hDpden,.sc-a93fbab8-2.wbRrB')
     const list: SelectedNewWorkType[] = []
     for (let el of els) {
         const userAEl: HTMLAreaElement | null = el.querySelector('a[href^="/users/"][data-ga4-label="user_name_link"]')
