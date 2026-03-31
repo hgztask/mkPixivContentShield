@@ -39,7 +39,7 @@ export default {
          * 第一段css选择器为旧的css选择器，第二段为新的css选择器
          */
         const list = await pageCommon.getAListOfWorks(
-            '.sc-e07c5bb9-2.eMLzTs,.sc-bf8cea3f-2',
+            '.sc-e07c5bb9-2.eMLzTs,.sc-bf8cea3f-2,.RJQUX',
             false)
 
         const dailyRanking = await getAreaElement('每日排行榜');
