@@ -2,6 +2,7 @@ import elUtil from "../utils/elUtil";
 import urlUtil from "../utils/urlUtil";
 import shielding from "../shieldingModel/shielding";
 import {IntervalExecutor} from "../model/IntervalExecutor";
+import pageCommon from "./pageCommon";
 
 //获取评论列表
 const getCommentList = async (): Promise<CommentType[]> => {
@@ -9,7 +10,7 @@ const getCommentList = async (): Promise<CommentType[]> => {
     const list: CommentType[] = []
     for (const el of els) {
         const userAEl: HTMLAreaElement = el.querySelector('a[href^="/users/"]')!
-        const insertionPositionEl = el.querySelector('div.sc-3ebdb5af-2')
+        const insertionPositionEl = el.querySelector('div[class^="Comment_commentActionContainer"]')
         const commentEl = el.querySelector('p');
         let comment = null;
         const userName = userAEl.getAttribute('data-user_name')!
@@ -37,7 +38,7 @@ export default {
     intervalCheckCommentListExecutor: new IntervalExecutor(async () => {
         const list = await getCommentList();
         shielding.shieldingItemDecorated(list)
-    }, {processTips: true, intervalName: '评论列表'}),
+    }, {processTips: true, intervalName: '作品展示页-评论列表'}),
     //获取作者信息
     getAuthorInfo() {
         const el = document.querySelector('aside>section a[href^="/users"]>div[title]')
@@ -47,5 +48,12 @@ export default {
         const userUrl = userAEl.href;
         const userId = urlUtil.getUrlUid(userUrl);
         return {userName, userUrl, userId}
-    }
+    }, /**
+     * 定时检查作品展示页底下的相关作品列表
+     */
+    intervalIllustrationListExecutor: new IntervalExecutor(async () => {
+        const sectionEl = await elUtil.getSectionLabel('h2', '相关作品')
+        const list = await pageCommon.getAListOfWorks('ul>li', false, sectionEl)
+        shielding.shieldingItemDecorated(list);
+    }, {processTips: true, intervalName: '作品展示页·相关作品列表'})
 }

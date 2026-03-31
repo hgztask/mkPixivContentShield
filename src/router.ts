@@ -39,11 +39,12 @@ export default {
             discoveryUsersPage.intervalRecommendedUsersListExecutor.start();
         }
         const isUrlArtWorksPage = artworksPage.isThisPage(url);
-        if (tagTopPage.isThisPage(url) || isUrlArtWorksPage) {
+        if (tagTopPage.isThisPage(url)) {
             tagTopPage.intervalIllustrationListExecutor.start();
         }
         if (isUrlArtWorksPage) {
             artworksPage.intervalCheckCommentListExecutor.start()
+            artworksPage.intervalIllustrationListExecutor.start()
         }
         if (usersPage.isThisPage(url) || isUrlArtWorksPage) {
             eventEmitter.emit('event:right_sidebar_show', true);
@@ -104,8 +105,10 @@ export default {
         eventEmitter.emit('event:right_sidebar_show', isArtWorksPage || usersPage.isThisPage(url));
         if (isArtWorksPage) {
             artworksPage.intervalCheckCommentListExecutor.start()
+            artworksPage.intervalIllustrationListExecutor.start()
         } else {
             artworksPage.intervalCheckCommentListExecutor.stop()
+            artworksPage.intervalIllustrationListExecutor.stop()
         }
     }
 }
