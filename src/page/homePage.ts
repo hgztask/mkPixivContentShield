@@ -57,7 +57,10 @@ export default {
         const els = document.querySelectorAll(selector)
         const list: SelectedNewWorkType[] = []
         for (let el of els) {
-            const userAEl: HTMLAreaElement = el.querySelector('a[data-ga4-label="user_name_link"]')!;
+            const userAEl: HTMLAreaElement | null = el.querySelector('a[data-ga4-label="user_name_link"]');
+            if (userAEl === null) {
+                continue;
+            }
             const userName = userAEl.textContent.trim();
             const userUrl = userAEl.href;
             const userId = urlUtil.getUrlUid(userUrl);
