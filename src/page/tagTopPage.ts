@@ -3,14 +3,6 @@ import pageCommon from "./pageCommon";
 import shielding from "../shieldingModel/shielding";
 import urlUtil from "../utils/urlUtil";
 
-/**
- * 定时检查tag页面中插画·漫画·小说列表、作品展示页底下的相关作品列表
- */
-const intervalIllustrationListExecutor = new IntervalExecutor(async () => {
-    const list = await pageCommon.getAListOfWorks('ul.sc-5b55504a-1>li,ul.sc-e83d358-1>li', false)
-    shielding.shieldingItemDecorated(list);
-}, {processTips: true, intervalName: '插画·漫画列表'})
-
 //检查tag页中的用户页列表
 const checkTagUserList = async () => {
     const list = await pageCommon.getListData('div.grid>.list-none')
@@ -40,5 +32,11 @@ export default {
         return url.includes('https://www.pixiv.net/search/users');
     },
     checkTagUserList,
-    intervalIllustrationListExecutor
+    /**
+     * 定时检查tag页面中插画·漫画·小说列表
+     */
+    intervalIllustrationListExecutor: new IntervalExecutor(async () => {
+        const list = await pageCommon.getAListOfWorks('section>div ul>li', false)
+        shielding.shieldingItemDecorated(list);
+    }, {processTips: true, intervalName: '插画·漫画列表'})
 }
