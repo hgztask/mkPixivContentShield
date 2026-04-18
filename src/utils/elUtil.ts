@@ -209,12 +209,12 @@ export default {
         const xPathResult = document.evaluate(expression, contextNode, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
         return xPathResult.singleNodeValue
     },
-    xpathEls(expression: string, contextNode = document.body) {
+    xpathEls(expression: string, contextNode = document.body): HTMLElement[] {
         const xPathResult = document.evaluate(expression, contextNode, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
-        const els = [];
+        const els: HTMLElement[] = [];
         for (let i = 0; i < xPathResult.snapshotLength; i++) {
             const node = xPathResult.snapshotItem(i);
-            els.push(node)
+            els.push(<HTMLElement>node)
         }
         return els;
     },
