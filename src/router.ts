@@ -9,6 +9,7 @@ import {eventEmitter} from "./model/EventEmitter";
 import rankingPage from "./page/rankingPage";
 import usersPage from "./page/usersPage";
 import searchPage from "./page/searchPage";
+import r18Page from "./page/r18Page";
 
 export default {
     /**
@@ -58,6 +59,9 @@ export default {
         }
         if (searchPage.isUrlPage(url)) {
             searchPage.intervalSearchContentListExecutor.start()
+        }
+        if (r18Page.isUrlPage(url)) {
+            r18Page.intervalIllustrationListExecutor.start();
         }
     },
     /**
@@ -118,6 +122,11 @@ export default {
             searchPage.intervalSearchContentListExecutor.start()
         } else {
             searchPage.intervalSearchContentListExecutor.stop()
+        }
+        if (r18Page.isUrlPage(url)) {
+            r18Page.intervalIllustrationListExecutor.start();
+        } else {
+            r18Page.intervalIllustrationListExecutor.stop();
         }
     }
 }
