@@ -22,7 +22,7 @@ export default {
             //是否是发现小说页或发现页面
             url.includes('www.pixiv.net/novel/discovery') || url.includes('www.pixiv.net/discovery') ||
             //是否是大家的新作页面侧边栏有时显示的是本站的最新作品
-            url.includes('//www.pixiv.net/new_illust.php') || url.endsWith('//www.pixiv.net/novel/new.php') ||
+            url.includes('//www.pixiv.net/new_illust') || url.endsWith('//www.pixiv.net/novel/new.php') ||
             //是否是小说编辑部推荐页面
             url.includes('//www.pixiv.net/novel/editors_picks') ||
             //是否是分类小说页
