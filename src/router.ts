@@ -8,6 +8,7 @@ import artworksPage from "./page/artworksPage";
 import {eventEmitter} from "./model/EventEmitter";
 import rankingPage from "./page/rankingPage";
 import usersPage from "./page/usersPage";
+import searchPage from "./page/searchPage";
 
 export default {
     /**
@@ -54,6 +55,9 @@ export default {
         }
         if (rankingPage.isThisPage(url)) {
             rankingPage.intervalCheckRankingWorksListExecutor.start();
+        }
+        if (searchPage.isUrlPage(url)) {
+            searchPage.intervalSearchContentListExecutor.start()
         }
     },
     /**
@@ -109,6 +113,11 @@ export default {
         } else {
             artworksPage.intervalCheckCommentListExecutor.stop()
             artworksPage.intervalIllustrationListExecutor.stop()
+        }
+        if (searchPage.isUrlPage(url)) {
+            searchPage.intervalSearchContentListExecutor.start()
+        } else {
+            searchPage.intervalSearchContentListExecutor.stop()
         }
     }
 }
