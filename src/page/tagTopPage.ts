@@ -34,9 +34,11 @@ export default {
     checkTagUserList,
     /**
      * 定时检查tag页面中插画·漫画·小说列表
+     * 复现url例子1:https://www.pixiv.net/tags/miku/artworks?mode=safe
+     * 复现url例子2:https://www.pixiv.net/tags/miku
      */
     intervalIllustrationListExecutor: new IntervalExecutor(async () => {
-        const list = await pageCommon.getAListOfWorks('section>div ul>li', false)
+        const list = await pageCommon.getAListOfWorks('section>div ul>li,div>div[data-ga4-entity-id^="illust/"],div>div[data-ga4-entity-id^="novel/"]', false)
         shielding.shieldingItemDecorated(list);
     }, {processTips: true, intervalName: '插画·漫画列表'})
 }
