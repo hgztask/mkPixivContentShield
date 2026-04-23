@@ -21,7 +21,7 @@ export default {
         this.showTags.splice(index, 1)
         GM_setValue(<string>this.typeMap.key, this.showTags);
         this.$message.success(`已移除 ${tag}`)
-        eventEmitter.send('刷新规则信息', false)
+        eventEmitter.send('event:刷新规则信息', false)
       })
     },
     closedHandle() {

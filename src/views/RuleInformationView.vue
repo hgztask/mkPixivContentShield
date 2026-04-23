@@ -41,7 +41,7 @@ export default {
   },
   created() {
     this.refreshInfo(false);
-    eventEmitter.on('刷新规则信息', (isTip = true) => {
+    eventEmitter.on('event:刷新规则信息', (isTip = true) => {
       this.refreshInfo(isTip);
     })
   }

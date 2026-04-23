@@ -181,7 +181,7 @@ export default {
         }
         const {status, res} = delRule(type, ruleValue)
         eventEmitter.send('el-msg', res)
-        status && eventEmitter.emit('刷新规则信息', false);
+        status && eventEmitter.emit('event:刷新规则信息', false);
     },
     /**
      *获取本地规则内容

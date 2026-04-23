@@ -40,7 +40,7 @@ export default {
     delBut() {
       const key = this.cascaderVal;
       ruleUtil.showDelRuleInput(key);
-      eventEmitter.emit('刷新规则信息', false);
+      eventEmitter.emit('event:刷新规则信息', false);
     },
     clearItemRuleBut() {
       const key = this.cascaderVal;
@@ -49,7 +49,7 @@ export default {
         GM_deleteValue(key)
         this.$alert(`已清空${find.fullName}的规则内容`)
       })
-      eventEmitter.emit('刷新规则信息', false);
+      eventEmitter.emit('event:刷新规则信息', false);
     },
     delAllBut() {
       this.$confirm('确定要删除所有规则吗？').then(() => {
@@ -57,7 +57,7 @@ export default {
           GM_deleteValue(x.key);
         }
         this.$message.success("删除全部规则成功");
-        eventEmitter.emit('刷新规则信息', false);
+        eventEmitter.emit('event:刷新规则信息', false);
       })
     }
   }
