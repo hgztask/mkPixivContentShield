@@ -6,6 +6,8 @@ import './model/maskOptionsDialogBox'
 import defaultStyle from './css/def.css';
 import gzStyle from './css/gz-style.css'
 import elUtil from "./utils/elUtil";
+import localMKData from "./data/localMKData";
+import shielding from "./shieldingModel/shielding";
 
 window.addEventListener('load', () => {
     console.log('页面加载完成');
@@ -21,5 +23,6 @@ window.addEventListener('DOMContentLoaded', () => {
     })
     GM_addStyle(defaultStyle)
     GM_addStyle(gzStyle)
+    shielding.applyShieldButtonPadding(localMKData.getShieldButtonPaddingGm());
     elUtil.updateCssVModal();
 })

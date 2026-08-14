@@ -64,7 +64,7 @@ export default {
     <el-drawer :visible.sync="drawer"
                direction="rtl"
                size="35%"
-               style="position: fixed"
+
                title="pixiv内容屏蔽器">
       <el-tabs tab-position="left" type="border-card">
         <el-tab-pane label="规则管理" lazy>

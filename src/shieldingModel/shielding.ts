@@ -84,7 +84,6 @@ const shieldingItem = (itemData: SelectedNewWorkType): DefReturnTempValType => {
         res = blockUserName(userName);
     }
     if (res.state) return res;
-    if (res.state) return res;
     return returnTempVal
 }
 
@@ -130,7 +129,17 @@ eventEmitter.on('event:插入屏蔽按钮', (itemData: SelectedNewWorkType) => {
     }
 });
 
-
+const shieldButtonStyleElId = 'gz-shield-btn-style'
 export default {
-    shieldingItem, shieldingItemDecorated
+    shieldingItem, shieldingItemDecorated,
+//应用屏蔽按钮垂直内边距，实时更新已插入的按钮，新插入的按钮自动继承
+    applyShieldButtonPadding(paddingV: number) {
+        let styleEl = document.getElementById(shieldButtonStyleElId) as HTMLStyleElement | null;
+        if (styleEl === null) {
+            styleEl = document.createElement('style');
+            styleEl.id = shieldButtonStyleElId;
+            document.head.appendChild(styleEl);
+        }
+        styleEl.textContent = `button[gz_type]{--gz-btn-pv:${paddingV}px}`;
+    }
 }

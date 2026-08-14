@@ -16,7 +16,7 @@ button[gz_type] {
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-    padding: 10px 20px;
+    padding: var(--gz-btn-pv, 10px) 20px;
     font-size: 14px;
     border-radius: 8px;
 }
@@ -55,45 +55,6 @@ button[border] {
     border-radius: 20px;
     padding: 12px 23px;
 }
-
-input[gz_type] {
-    font-family: 'Arial', sans-serif; /* 设置字体 */
-    font-size: 16px; /* 设置字体大小 */
-    padding: 10px; /* 输入框内部的填充 */
-    margin: 10px; /* 输入框外部的边距 */
-    border: 1px solid #ccc; /* 边框样式 */
-    border-radius: 4px; /* 边框圆角 */
-    outline: none; /* 移除聚焦时的轮廓线 */
-}
-
-input[gz_type]:focus {
-    border-color: #007bff; /* 聚焦时边框颜色 */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* 聚焦时的阴影效果 */
-}
-
-select {
-    font-family: 'Arial', sans-serif; /* 设置字体 */
-    font-size: 16px; /* 设置字体大小 */
-    padding: 10px; /* 输入框内部的填充 */
-    margin: 10px; /* 输入框外部的边距 */
-    border: 1px solid #ccc; /* 边框样式 */
-    border-radius: 4px; /* 边框圆角 */
-    outline: none; /* 移除聚焦时的轮廓线 */
-    background-color: white; /* 背景色 */
-    color: #333; /* 文本颜色 */
-}
-
-select:focus {
-    border-color: #007bff; /* 聚焦时边框颜色 */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* 聚焦时的阴影效果 */
-}
-
-select:disabled {
-    background-color: #f1f1f1; /* 禁用时的背景色 */
-    border-color: #ccc; /* 禁用时的边框色 */
-    color: #888; /* 禁用时的文本色 */
-}
-
 
 button:hover {
     border-color: #646cff;
