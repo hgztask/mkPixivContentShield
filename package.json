@@ -4,28 +4,28 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "build": "rollup -c --environment ROLLUP_ENV:production",
-    "watch:dev": "rollup -w -c"
+    "build": "rollup -c rollup.config.mjs --environment ROLLUP_ENV:production",
+    "watch:dev": "rollup -w -c rollup.config.mjs"
   },
   "private": true,
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^28.0.8",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-replace": "^6.0.2",
-    "@rollup/plugin-typescript": "^12.2.0",
+    "@types/node": "^26.1.0",
     "@types/tampermonkey": "^5.0.5",
-    "@types/vue": "^2.0.0",
     "element-ui": "^2.15.14",
     "esbuild": "^0.25.8",
     "nodemon": "^3.1.10",
-    "rollup": "^4.52.5",
+    "rollup": "^4.59.0",
     "rollup-plugin-esbuild": "^6.2.1",
     "rollup-plugin-import-content": "^1.1.0",
     "rollup-plugin-serve": "^3.0.0",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-vue": "5.1.9",
-    "typescript": "^5.9.3",
+    "rollup-plugin-vue": "^5.1.9",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
     "vue": "^2.7.16",
-    "vue-template-compiler": "^2.7.16"
+    "vue-template-compiler": "^2.7.16",
+    "magic-string": "^0.30.21"
   }
 }
